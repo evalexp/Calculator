@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "QProcess"
 #include "QMessageBox"
+#include "exprtk.hpp"
+#include <string>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -54,7 +56,14 @@ int MainWindow::Find_LastNumber(const QString &exp){
  */
 void MainWindow::on_toolButton_equal_clicked()
 {
+    std::string exp = ui->textEdit->toPlainText().toStdString();
+    exprtk::parser<double> parser;
+    exprtk::expression<double> expression;
+    parser.compile(exp, expression);
+    const double result = expression.value();
+    QMessageBox::information(NULL, "Tips", QString("%1").arg(result));
     QString command = ui->textEdit->toPlainText().replace("sqrt", "[math]::sqrt");
+    return ;
     QProcess *p = new QProcess();
     QStringList ql;
     ql << "-Command" << "{" + command + "}";

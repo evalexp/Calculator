@@ -16,10 +16,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    calculator.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
 
 HEADERS += \
+    calculator.h \
+    exprtk.hpp \
     mainwindow.h
 
 FORMS += \
@@ -27,6 +30,9 @@ FORMS += \
 
 TRANSLATIONS += \
     Calculator_zh_CN.ts
+
+QMAKE_CXXFLAGS += \
+    -Ofast -flto
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
