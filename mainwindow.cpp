@@ -5,6 +5,7 @@
 #include "calculator.h"
 #include "tinyexpr.h"
 #include "conv.h"
+#include "json.h"
 
 QString result;
 
@@ -18,11 +19,19 @@ MainWindow::MainWindow(QWidget *parent)
       */
     ui->textEdit->clear();
     ui->textEdit->setAlignment(Qt::AlignRight);
+    /**
+      * Initial extensions
+      */
+    this->conv = new Conv();
+    this->his = new History();
+    connect(this, SIGNAL(sendSignal(const QString&)), his, SLOT(mesRecv(const QString&)));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete conv;
+    delete his;
 }
 
 /**
@@ -59,6 +68,10 @@ void MainWindow::on_toolButton_equal_clicked()
 {
     double result = Calculator::eval(ui->textEdit->toPlainText());
     QString s = QString("%1").arg(result);
+    QJsonObject json;
+    json.insert("action", "Add-Item");
+    json.insert("expr", ui->textEdit->toPlainText());
+    json.insert("result", s);
 //    QMessageBox::information(NULL, "Tips", s);
     if(s == "nan"){
         QMessageBox::critical(NULL, "ERROR", "Illegal Expression! Please check your expression!");
@@ -66,6 +79,7 @@ void MainWindow::on_toolButton_equal_clicked()
     }
     ui->textEdit->setText(s);
     ui->textEdit->setAlignment(Qt::AlignRight);
+    sendSignal(JSON::JsonToString(json));
 }
 
 void MainWindow::on_toolButton_del_clicked()
@@ -202,14 +216,12 @@ void MainWindow::on_toolButton_comma_clicked()
 
 void MainWindow::on_history_triggered()
 {
-
+    this->his->show();
 }
 
 void MainWindow::on_action_conv_triggered()
 {
-    Conv* conv = new Conv();
-    conv->show();
-
+    this->conv->show();
 }
 
 void MainWindow::on_textEdit_textChanged()

@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "conv.h"
+#include "history.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -74,6 +76,11 @@ private:
     Ui::MainWindow *ui;
     void TextEdit_Add(const QString &text);
     int Find_LastNumber(const QString &exp);
-    void DisableAllComponents();
+
+    Conv* conv;
+    History* his;
+
+signals:
+    void sendSignal(const QString&);
 };
 #endif // MAINWINDOW_H

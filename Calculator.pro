@@ -18,6 +18,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     calculator.cpp \
     conv.cpp \
+    history.cpp \
+    json.cpp \
     main.cpp \
     mainwindow.cpp \
     numeralconverter.cpp \
@@ -26,12 +28,15 @@ SOURCES += \
 HEADERS += \
     calculator.h \
     conv.h \
+    history.h \
+    json.h \
     mainwindow.h \
     numeralconverter.h \
     tinyexpr.h
 
 FORMS += \
     conv.ui \
+    history.ui \
     mainwindow.ui
 
 TRANSLATIONS += \

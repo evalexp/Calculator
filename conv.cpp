@@ -67,6 +67,9 @@ void Conv::on_toolButton_clicked()
 
 void Conv::on_radioButton_dec_clicked()
 {
+    if(ui->textEdit->toPlainText() == ""){
+        return ;
+    }
     NumeralConverter* converter = new NumeralConverter(origin, ui->textEdit->toPlainText().toStdString());
     if(converter->valueGood()){
         this->setText(QString::fromStdString(converter->ConvertValue(NumeralConverter::NumSystem::DEC)));
@@ -80,6 +83,9 @@ void Conv::on_radioButton_dec_clicked()
 
 void Conv::on_radioButton_oct_clicked()
 {
+    if(ui->textEdit->toPlainText() == ""){
+        return ;
+    }
     NumeralConverter* converter = new NumeralConverter(origin, ui->textEdit->toPlainText().toStdString());
     if(converter->valueGood()){
         this->setText(QString::fromStdString(converter->ConvertValue(NumeralConverter::NumSystem::OCT)));
@@ -93,6 +99,9 @@ void Conv::on_radioButton_oct_clicked()
 
 void Conv::on_radioButton_hex_clicked()
 {
+    if(ui->textEdit->toPlainText() == ""){
+        return ;
+    }
     NumeralConverter* converter = new NumeralConverter(origin, ui->textEdit->toPlainText().toStdString());
     if(converter->valueGood()){
         this->setText(QString::fromStdString(converter->ConvertValue(NumeralConverter::NumSystem::HEX)));
@@ -106,6 +115,9 @@ void Conv::on_radioButton_hex_clicked()
 
 void Conv::on_radioButton_bin_clicked()
 {
+    if(ui->textEdit->toPlainText() == ""){
+        return ;
+    }
     NumeralConverter* converter = new NumeralConverter(origin, ui->textEdit->toPlainText().toStdString());
     if(converter->valueGood()){
         this->setText(QString::fromStdString(converter->ConvertValue(NumeralConverter::NumSystem::BIN)));
