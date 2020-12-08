@@ -17,16 +17,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     calculator.cpp \
+    conv.cpp \
     main.cpp \
     mainwindow.cpp \
+    numeralconverter.cpp \
     tinyexpr.c
 
 HEADERS += \
     calculator.h \
+    conv.h \
     mainwindow.h \
+    numeralconverter.h \
     tinyexpr.h
 
 FORMS += \
+    conv.ui \
     mainwindow.ui
 
 TRANSLATIONS += \

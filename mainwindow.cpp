@@ -4,6 +4,9 @@
 #include "QMessageBox"
 #include "calculator.h"
 #include "tinyexpr.h"
+#include "conv.h"
+
+QString result;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent)
       */
     ui->textEdit->clear();
     ui->textEdit->setAlignment(Qt::AlignRight);
-
 }
 
 MainWindow::~MainWindow()
@@ -59,35 +61,10 @@ void MainWindow::on_toolButton_equal_clicked()
     QString s = QString("%1").arg(result);
 //    QMessageBox::information(NULL, "Tips", s);
     if(s == "nan"){
-        QMessageBox::information(NULL, "ERROR", "Illegal Expression! Please check your expression!");
+        QMessageBox::critical(NULL, "ERROR", "Illegal Expression! Please check your expression!");
         return ;
     }
     ui->textEdit->setText(s);
-    ui->textEdit->setAlignment(Qt::AlignRight);
-}
-
-/**
- * @brief MainWindow::on_toolButton_inv_clicked
- * find the last number x, and replace it to 1/x
- */
-void MainWindow::on_toolButton_inv_clicked()
-{
-    QString exp = ui->textEdit->toPlainText();
-    if(     exp[exp.length() -1 ] == ')' ||
-            exp[exp.length() -1 ] == '(' ||
-            exp[exp.length() -1 ] == '+' ||
-            exp[exp.length() -1 ] == '-' ||
-            exp[exp.length() -1 ] == '*' ||
-            exp[exp.length() -1 ] == '/' ||
-            exp[exp.length() -1 ] == '%'){
-        return ;
-    }
-    int index = this->Find_LastNumber(exp);
-    if(exp.mid(index) == "1"){
-        return ;
-    }
-    QString s_num = "1/" + exp.mid(index);
-    ui->textEdit->setText(exp.mid(0, index) + s_num);
     ui->textEdit->setAlignment(Qt::AlignRight);
 }
 
@@ -98,8 +75,13 @@ void MainWindow::on_toolButton_del_clicked()
     if(text.length() <= 1){
         s = "";
     }
-    else if(text[text.length() - 1] == '(' && text[text.length() - 2] == 't'){
-        s = text.mid(0, text.length() - 5);
+    /**
+      * Check if the last one is sqrt or other function
+      */
+    else if(text[text.length() - 1] == '('){
+        if(text[text.length() - 2] == 't'){ // sqrt
+            s = text.mid(0, text.length() - 5);
+        }
     }else{
         s = text.mid(0, text.length() - 1);
     }
@@ -206,4 +188,31 @@ void MainWindow::on_toolButton_left_clicked()
 void MainWindow::on_toolButton_right_clicked()
 {
     this->TextEdit_Add(")");
+}
+
+void MainWindow::on_toolButton_pow_clicked()
+{
+    this->TextEdit_Add("^");
+}
+
+void MainWindow::on_toolButton_comma_clicked()
+{
+    this->TextEdit_Add(",");
+}
+
+void MainWindow::on_history_triggered()
+{
+
+}
+
+void MainWindow::on_action_conv_triggered()
+{
+    Conv* conv = new Conv();
+    conv->show();
+
+}
+
+void MainWindow::on_textEdit_textChanged()
+{
+    result = ui->textEdit->toPlainText();
 }

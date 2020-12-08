@@ -44,8 +44,6 @@ private slots:
 
     void on_toolButton_mul_clicked();
 
-    void on_toolButton_inv_clicked();
-
     void on_toolButton_mod_clicked();
 
     void on_toolButton_add_clicked();
@@ -62,9 +60,20 @@ private slots:
 
     void on_toolButton_right_clicked();
 
+    void on_toolButton_pow_clicked();
+
+    void on_toolButton_comma_clicked();
+
+    void on_history_triggered();
+
+    void on_action_conv_triggered();
+
+    void on_textEdit_textChanged();
+
 private:
     Ui::MainWindow *ui;
     void TextEdit_Add(const QString &text);
     int Find_LastNumber(const QString &exp);
+    void DisableAllComponents();
 };
 #endif // MAINWINDOW_H
