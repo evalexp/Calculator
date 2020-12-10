@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     calculator.cpp \
     conv.cpp \
+    evaluator.cpp \
     history.cpp \
     json.cpp \
     main.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
 HEADERS += \
     calculator.h \
     conv.h \
+    evaluator.h \
     history.h \
     json.h \
     mainwindow.h \

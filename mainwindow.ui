@@ -101,10 +101,10 @@
      </font>
     </property>
     <property name="toolTip">
-     <string/>
+     <string>if you want to calculate 2^4, you shoule provide as pow(2,4)</string>
     </property>
     <property name="text">
-     <string>^</string>
+     <string>pow</string>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_0">

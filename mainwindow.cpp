@@ -6,6 +6,7 @@
 #include "tinyexpr.h"
 #include "conv.h"
 #include "json.h"
+#include "QDebug"
 
 QString result;
 
@@ -84,18 +85,24 @@ void MainWindow::on_toolButton_equal_clicked()
 
 void MainWindow::on_toolButton_del_clicked()
 {
+    qDebug() << "Del";
+    QStringList function_list;
     QString text = ui->textEdit->toPlainText();
     QString s;
     if(text.length() <= 1){
         s = "";
     }
     /**
-      * Check if the last one is sqrt or other function
+      * Check if the last one is a function
       */
     else if(text[text.length() - 1] == '('){
-        if(text[text.length() - 2] == 't'){ // sqrt
-            s = text.mid(0, text.length() - 5);
+        int i = text.length() - 2;
+        for(; i >= 0; i--){
+            if(!(text[i] >= 'a' && text[i] <= 'z')){
+                break;
+            }
         }
+        s = text.mid(0, i + 1);
     }else{
         s = text.mid(0, text.length() - 1);
     }
@@ -206,7 +213,7 @@ void MainWindow::on_toolButton_right_clicked()
 
 void MainWindow::on_toolButton_pow_clicked()
 {
-    this->TextEdit_Add("^");
+    this->TextEdit_Add("pow(");
 }
 
 void MainWindow::on_toolButton_comma_clicked()
