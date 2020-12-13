@@ -2,6 +2,7 @@
 #include "QString"
 #include "tinyexpr.h"
 #include "evaluator.h"
+#include "QDebug"
 
 Calculator::Calculator()
 {

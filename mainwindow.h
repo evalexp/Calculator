@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "conv.h"
 #include "history.h"
+#include "allfunction.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -72,6 +73,10 @@ private slots:
 
     void on_textEdit_textChanged();
 
+    void recvMes(const QString&);
+
+    void on_showAll_triggered();
+
 private:
     Ui::MainWindow *ui;
     void TextEdit_Add(const QString &text);
@@ -79,6 +84,7 @@ private:
 
     Conv* conv;
     History* his;
+    AllFunction* af;
 
 signals:
     void sendSignal(const QString&);

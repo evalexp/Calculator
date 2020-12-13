@@ -29,7 +29,7 @@
      </font>
     </property>
    </widget>
-   <widget class="QToolButton" name="toolButton">
+   <widget class="QToolButton" name="toolButton_del">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -47,7 +47,7 @@
      <string>删除选中项</string>
     </property>
    </widget>
-   <widget class="QToolButton" name="toolButton_2">
+   <widget class="QToolButton" name="toolButton_expr">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -65,7 +65,7 @@
      <string>复制选中计算表达式</string>
     </property>
    </widget>
-   <widget class="QToolButton" name="toolButton_3">
+   <widget class="QToolButton" name="toolButton_result">
     <property name="geometry">
      <rect>
       <x>550</x>

@@ -26,6 +26,17 @@ MainWindow::MainWindow(QWidget *parent)
     this->conv = new Conv();
     this->his = new History();
     connect(this, SIGNAL(sendSignal(const QString&)), his, SLOT(mesRecv(const QString&)));
+    this->af = new AllFunction();
+    connect(this->af, SIGNAL(sendMes(const QString&)),this, SLOT(recvMes(const QString&)));
+
+}
+
+void MainWindow::recvMes(const QString& mes){
+    QJsonObject json = JSON::StringToJson(mes);
+    if(json.value("action") == "Expr-Append-Function"){
+        ui->textEdit->setText(ui->textEdit->toPlainText() + json.value("function").toString());
+        ui->textEdit->setAlignment(Qt::AlignRight);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -33,6 +44,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete conv;
     delete his;
+    delete af;
 }
 
 /**
@@ -73,7 +85,6 @@ void MainWindow::on_toolButton_equal_clicked()
     json.insert("action", "Add-Item");
     json.insert("expr", ui->textEdit->toPlainText());
     json.insert("result", s);
-//    QMessageBox::information(NULL, "Tips", s);
     if(s == "nan"){
         QMessageBox::critical(NULL, "ERROR", "Illegal Expression! Please check your expression!");
         return ;
@@ -85,7 +96,6 @@ void MainWindow::on_toolButton_equal_clicked()
 
 void MainWindow::on_toolButton_del_clicked()
 {
-    qDebug() << "Del";
     QStringList function_list;
     QString text = ui->textEdit->toPlainText();
     QString s;
@@ -234,4 +244,9 @@ void MainWindow::on_action_conv_triggered()
 void MainWindow::on_textEdit_textChanged()
 {
     result = ui->textEdit->toPlainText();
+}
+
+void MainWindow::on_showAll_triggered()
+{
+    this->af->show();
 }

@@ -1,15 +1,148 @@
 #include "evaluator.h"
+#include "QDebug"
 
 Evaluator::Evaluator()
 {
     /**
       * Register function sqrt
       */
-    this->registerFunction("sqrt", [](QList<double> list) -> double{
+    this->registerFunction("abs", [](QList<double> list) -> double{
         if(list.length() == 1){
-            return sqrt(list[0]);
+            return fabs(list[0]);
         }else{
             throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function acos
+      */
+    this->registerFunction("acos", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return acos(list[0]);
+        }else{
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function asin
+      */
+    this->registerFunction("asin", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return asin(list[0]);
+        }else{
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function atan
+      */
+    this->registerFunction("atan", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return atan(list[0]);
+        }else{
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function atan2
+      */
+    this->registerFunction("atan2", [](QList<double> list) -> double{
+        if(list.length() == 2){
+            return atan2(list[0], list[1]);
+        }else{
+            throw "require 2 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function ceil
+      */
+    this->registerFunction("ceil", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return ceil(list[0]);
+        }else{
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function cos
+      */
+    this->registerFunction("cos", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return cos(list[0]);
+        }else{
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function cosh
+      */
+    this->registerFunction("cosh", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return cosh(list[0]);
+        }else{
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function exp
+      */
+    this->registerFunction("exp", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            qDebug() << "Try to calculate exp " << list[0];
+            return exp(list[0]);
+        }else{
+            qDebug() << "ERROR: " << list.length();
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function e
+      */
+    this->registerFunction("e", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return exp(1);
+        }else{
+            throw "require 0 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function floor
+      */
+    this->registerFunction("floor", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return floor(list[0]);
+        }else{
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function ln
+      */
+    this->registerFunction("ln", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return log(list[0]);
+        }else{
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function lg
+      */
+    this->registerFunction("lg", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return log10(list[0]);
+        }else{
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function pi
+      */
+    this->registerFunction("pi", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return M_PI;
+        }else{
+            throw "require 0 parameter, but provide " + QString("%0").arg(list.length());
         }
     });
     /**
@@ -21,6 +154,56 @@ Evaluator::Evaluator()
         }else{
             throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
         }
+    });
+    /**
+      * Register function sqrt
+      */
+    this->registerFunction("sinh", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return sinh(list[0]);
+        }else{
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function tan
+      */
+    this->registerFunction("tan", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return tan(list[0]);
+        }else{
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function tanh
+      */
+    this->registerFunction("tanh", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return tanh(list[0]);
+        }else{
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function sqrt
+      */
+    this->registerFunction("sqrt", [](QList<double> list) -> double{
+        if(list.length() == 1){
+            return sqrt(list[0]);
+        }else{
+            throw "require 1 parameter, but provide " + QString("%0").arg(list.length());
+        }
+    });
+    /**
+      * Register function pow
+      */
+    this->registerFunction("pow", [](QList<double> list) -> double{
+       if(list.length() == 2){
+           return pow(list[0], list[1]);
+       }else{
+           throw "require 2 parameter, but provide " + QString("%0").arg(list.length());
+       }
     });
 }
 
@@ -63,8 +246,11 @@ double Evaluator::eval(QString expr){
  * @return if the string is only a number
  */
 bool Evaluator::isNumber(const QString &expr){
-    for(auto &it: expr){
-        if(!((it >= '0' && it <= '9') || it == '.')){
+    if((expr[0] != '-' && expr[0] != '+') && (expr[0] < '0' && expr[9] > '9')){
+        return false;
+    }
+    for(auto i = 1; i < expr.length(); i++){
+        if(!((expr[i] >= '0' && expr[i] <= '9') || expr[i] == '.')){
             return false;
         }
     }
@@ -113,7 +299,9 @@ QString Evaluator::stripSpace(QString expr){
  * @return expr without function
  */
 QString Evaluator::evalFunction(QString expr){
-    for(auto &item : this->functionList){   // analyse all registered funcion
+    if(this->isNumber(expr))
+        return expr;
+    for(auto &item : this->functionList){   // analyse all registered function
         while(expr.indexOf(item) != -1){    // found that the expr use the function `item`
             int start = expr.indexOf(item); // get the function start index
             int ans = -1;
@@ -162,6 +350,8 @@ QString Evaluator::evalFunction(QString expr){
  * @return expr without parentheses
  */
 QString Evaluator::evalParentheses(QString expr){
+    if(this->isNumber(expr))
+        return expr;
     int index = expr.indexOf('(');
     if(index == -1){
         return expr;
@@ -182,6 +372,9 @@ QString Evaluator::evalParentheses(QString expr){
  */
 int Evaluator::FindForward(const QString &expr, const int &s_index){
     for(int i = s_index - 1; i >= 0; i--){
+        if(expr[i] == '-' || expr[i] == '+'){
+            return i;
+        }
         if(!((expr[i] >= '0' && expr[i] <= '9') || expr[i] == '.')){
             return i+1;
         }
@@ -200,6 +393,9 @@ int Evaluator::FindForward(const QString &expr, const int &s_index){
  */
 int Evaluator::FindAfter(const QString &expr, const int &s_index){
     for(int i = s_index + 1; i < expr.length(); i++){
+        if(i == s_index+1 && (expr[i] == '-' || expr[i] == '+')){
+            continue;
+        }
         if(!((expr[i] >= '0' && expr[i] <= '9') || expr[i] == '.')){
             return i-1;
         }
@@ -226,18 +422,15 @@ void Evaluator::GetNumberAndIndex(const QString &expr, QString &number1, QString
  * should deal ^(pow) first
  */
 QString Evaluator::evalMul(QString expr){
+    if(this->isNumber(expr)){
+        return expr;
+    }
     int div_index = expr.indexOf('/') == -1 ? 0x7ffffff:expr.indexOf('/');
     int mul_index = expr.indexOf('*') == -1 ? 0x7ffffff:expr.indexOf('*');
     int mod_index = expr.indexOf('%') == -1 ? 0x7ffffff:expr.indexOf('%');
     if(div_index != 0x7ffffff && div_index < mul_index && div_index < mod_index){
         QString number1 = "", number2 = "";
         int index_for, index_af;
-//        int index_for = this->FindForward(expr, div_index);
-//        int index_af = this->FindAfter(expr, div_index);
-//        if(index_for != -1 && index_af != -1){
-//            number1 = expr.mid(index_for, div_index - index_for);
-//            number2 = expr.mid(div_index + 1, index_af - div_index);
-//        }
         this->GetNumberAndIndex(expr, number1, number2, index_for, index_af, div_index);
         QString r_expr = expr.left(index_for) + QString("%0").arg(number1.toDouble()/number2.toDouble()) + expr.mid(index_af + 1);
         return this->evalMul(r_expr);
@@ -245,12 +438,6 @@ QString Evaluator::evalMul(QString expr){
     if(mul_index != 0x7ffffff && mul_index < div_index && mul_index < mod_index){
         QString number1 = "", number2 = "";
         int index_for, index_af;
-//        int index_for = this->FindForward(expr, mul_index);
-//        int index_af = this->FindAfter(expr, mul_index);
-//        if(index_for != -1 && index_af != -1){
-//            number1 = expr.mid(index_for, mul_index - index_for);
-//            number2 = expr.mid(mul_index + 1, index_af - mul_index);
-//        }
         this->GetNumberAndIndex(expr, number1, number2, index_for, index_af, mul_index);
         QString r_expr = expr.left(index_for) + QString("%0").arg(number1.toDouble()*number2.toDouble()) + expr.mid(index_af + 1);
         return this->evalMul(r_expr);
@@ -258,12 +445,6 @@ QString Evaluator::evalMul(QString expr){
     if(mod_index != 0x7ffffff && mod_index < div_index && mod_index < mul_index){
         QString number1 = "", number2 = "";
         int index_for, index_af;
-//        int index_for = this->FindForward(expr, mod_index);
-//        int index_af = this->FindAfter(expr, mod_index);
-//        if(index_for != -1 && index_af != -1){
-//            number1 = expr.mid(index_for, mod_index - index_for);
-//            number2 = expr.mid(mod_index + 1, index_af - mod_index);
-//        }
         this->GetNumberAndIndex(expr, number1, number2, index_for, index_af, mod_index);
         QString r_expr = expr.left(index_for) + QString("%0").arg(number1.toInt()%number2.toInt()) + expr.mid(index_af + 1);
         return this->evalMul(r_expr);
@@ -277,16 +458,18 @@ QString Evaluator::evalMul(QString expr){
  * @return the expr's result
  */
 QString Evaluator::evalPlus(QString expr){
+    if(this->isNumber(expr))
+        return expr;
     int plus_index = expr.indexOf('+') == -1 ? 0x7ffffff:expr.indexOf('+');
     int dec_index = expr.indexOf('-') == -1 ? 0x7ffffff:expr.indexOf('-');
     QString number1 = "", number2 = "";
     int index_for, index_af;
-    if(plus_index != 0x7ffffff && plus_index < dec_index){
+    if(plus_index != 0x7ffffff  /*&& plus_index < dec_index */){
         this->GetNumberAndIndex(expr, number1, number2, index_for, index_af, plus_index);
         QString r_expr = expr.left(index_for) + QString("%0").arg(number1.toDouble() + number2.toDouble()) + expr.mid(index_af + 1);
         return this->evalPlus(r_expr);
     }
-    if(dec_index != 0x7ffffff & dec_index < plus_index){
+    if(dec_index != 0x7ffffff /*&& dec_index < plus_index*/){
         this->GetNumberAndIndex(expr, number1, number2, index_for, index_af, dec_index);
         QString r_expr = expr.left(index_for) + QString("%0").arg(number1.toDouble() - number2.toDouble()) + expr.mid(index_af + 1);
         return this->evalPlus(r_expr);

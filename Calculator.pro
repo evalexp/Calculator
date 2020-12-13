@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    allfunction.cpp \
     calculator.cpp \
     conv.cpp \
     evaluator.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
     tinyexpr.c
 
 HEADERS += \
+    allfunction.h \
     calculator.h \
     conv.h \
     evaluator.h \
@@ -37,6 +39,7 @@ HEADERS += \
     tinyexpr.h
 
 FORMS += \
+    allfunction.ui \
     conv.ui \
     history.ui \
     mainwindow.ui

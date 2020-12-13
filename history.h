@@ -19,6 +19,13 @@ public:
 public slots:
     void mesRecv(const QString&);
 
+private slots:
+    void on_toolButton_del_clicked();
+
+    void on_toolButton_expr_clicked();
+
+    void on_toolButton_result_clicked();
+
 private:
     Ui::History *ui;
 };

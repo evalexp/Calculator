@@ -19,9 +19,12 @@ public:
     QString evalParentheses(QString);
     QString evalMul(QString);
     QString evalPlus(QString);
-
-private:
     bool isNumber(const QString&);
+    int FindForward(const QString&, const int&);
+    int FindAfter(const QString&, const int&);
+    void GetNumberAndIndex(const QString&, QString&, QString&, int&, int&, const int&);
+private:
+
     QMap<QString, std::function<double (QList<double>)>> re_function;
 
     bool registerFunction(QString, std::function<double (QList<double>)>);
@@ -30,9 +33,8 @@ private:
     QStringList functionList;
 
     int FindMatchedIndex(const QString&, const int&);
-    int FindForward(const QString&, const int&);
-    int FindAfter(const QString&, const int&);
-    void GetNumberAndIndex(const QString&, QString&, QString&, int&, int&, const int&);
+
+
 };
 
 #endif // EVALUATOR_H
