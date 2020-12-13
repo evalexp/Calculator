@@ -4,7 +4,7 @@
 Evaluator::Evaluator()
 {
     /**
-      * Register function sqrt
+      * Register function abs
       */
     this->registerFunction("abs", [](QList<double> list) -> double{
         if(list.length() == 1){
